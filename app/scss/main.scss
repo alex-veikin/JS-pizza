@@ -1,0 +1,89 @@
+@import "smart-grid";
+
+@include reset();
+
+.debug {
+  display: none;
+  @include debug(rgba(0, 0, 0, 0.4), 0);
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+}
+
+.question {
+  max-width: 1000px;
+  min-width: 700px;
+  box-sizing: border-box;
+  //border: 1px solid #235632;
+  margin: 0 auto;
+  //display: none;
+
+  &.visible {
+
+  }
+
+  .cards {
+    display: flex;
+    justify-content: center;
+
+    > div {
+      max-width: 150px;
+      margin: 10px;
+      //overflow: hidden;
+
+      img {
+        vertical-align: middle;
+        border-radius: 10px;
+        box-sizing: border-box;
+        border: 6px solid #8fb0ff;
+        background-color: #8fb0ff;
+        //transform: scaleX(-1);
+      }
+    }
+  }
+
+  .variants {
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+
+    > div {
+      max-width: 150px;
+      margin: 10px;
+      //overflow: hidden;
+
+      img {
+        vertical-align: middle;
+        border-radius: 10px;
+        box-sizing: border-box;
+        border: 6px solid #8fb0ff;
+        background-color: #8fb0ff;
+        transition: .2s all ease;
+
+        &.check {
+          border-color: #57ff89;
+        }
+      }
+    }
+  }
+}
+
+@keyframes flipIn {
+  from {transform: rotateX(90deg);}
+  to {transform: rotateX(0deg);}
+}
+
+@keyframes flipOut {
+  from {transform: rotateX(0deg);}
+  to {transform: rotateX(90deg);}
+}
+
+.flipIn {
+  animation: flipIn .3s linear;
+}
+
+.flipOut {
+  animation: flipOut .3s linear;
+}
