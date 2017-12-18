@@ -149,135 +149,138 @@ img {
   background: rgba(0, 0, 0, 0.4);
 }
 
-.title {
+section {
+  min-width: -webkit-calc(100vw - 40px);
+  min-width: calc(100vw - 40px);
+  min-height: -webkit-calc(100vh - 40px);
+  min-height: calc(100vh - 40px);
+  margin: 20px;
+  background-color: #eee;
+  -webkit-border-radius: 10px;
+          border-radius: 10px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+section .details {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  padding-bottom: 30px;
+}
+
+section .details .left {
+  margin: 10px;
+  width: 50%;
+}
+
+section .details .left .description {
+  border: 1px solid red;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 220px;
+}
+
+section .details .left .price {
+  margin: 30px auto 0;
+  height: 60px;
   text-align: center;
-  font-size: 30px;
+  font-size: 36px;
+  font-weight: bold;
+  font-style: italic;
+  color: #0060FF;
 }
 
-.question {
-  max-width: 1000px;
-  min-width: 700px;
+section .details .right {
+  margin: 10px;
+  width: 50%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+section .details .right .pizza {
+  border: 1px solid red;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  width: 220px;
+  height: 220px;
   margin: 0 auto;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
 }
 
-.question .cards {
+section .details .right .order {
+  text-align: center;
+}
+
+section .details .right .order button {
+  width: 150px;
+  height: 60px;
+  border: none;
+  background-color: #0060ff;
+  font-size: 26px;
+  color: white;
+  margin-top: 30px;
+}
+
+section .ingredients {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  padding-top: 10px;
+  border-top: 2px solid #999;
 }
 
-.question .cards > div {
-  max-width: 150px;
+section .ingredients .item {
+  width: 25%;
   margin: 10px;
 }
 
-.question .cards > div img {
-  vertical-align: middle;
-  -webkit-border-radius: 10px;
-          border-radius: 10px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 6px solid #8fb0ff;
-  background-color: #8fb0ff;
+section .ingredients .item .title {
+  font-size: 24px;
+  text-align: center;
+  border-bottom: 2px solid #999;
+  padding-bottom: 15px;
 }
 
-.question .variants {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  visibility: hidden;
+section .ingredients .item ul {
+  margin-top: 15px;
 }
 
-.question .variants > div {
-  max-width: 150px;
-  margin: 10px;
+section .ingredients .item ul li {
+  background-color: #aed3ff;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  margin: 15px 0;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
 }
 
-.question .variants > div img {
-  vertical-align: middle;
-  -webkit-border-radius: 10px;
-          border-radius: 10px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 6px solid #8fb0ff;
-  background-color: #8fb0ff;
-  -webkit-transition: .2s all ease;
-  -o-transition: .2s all ease;
-  transition: .2s all ease;
-}
-
-.question .variants > div img.check {
-  border-color: #57ff89;
-}
-
-@-webkit-keyframes flipIn {
-  from {
-    -webkit-transform: rotateX(90deg);
-            transform: rotateX(90deg);
-  }
-
-  to {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-}
-
-@keyframes flipIn {
-  from {
-    -webkit-transform: rotateX(90deg);
-            transform: rotateX(90deg);
-  }
-
-  to {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-}
-
-@-webkit-keyframes flipOut {
-  from {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-
-  to {
-    -webkit-transform: rotateX(90deg);
-            transform: rotateX(90deg);
-  }
-}
-
-@keyframes flipOut {
-  from {
-    -webkit-transform: rotateX(0deg);
-            transform: rotateX(0deg);
-  }
-
-  to {
-    -webkit-transform: rotateX(90deg);
-            transform: rotateX(90deg);
-  }
-}
-
-.flipIn {
-  -webkit-animation: flipIn .3s linear;
-          animation: flipIn .3s linear;
-}
-
-.flipOut {
-  -webkit-animation: flipOut .3s linear;
-          animation: flipOut .3s linear;
+section .ingredients .item ul li.active {
+  background-color: #72ff80;
 }
 
 @media screen and (max-width: 980px) {

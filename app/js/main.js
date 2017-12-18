@@ -1,48 +1,56 @@
 $(function () {
 
-    var start = $(".title");
-    start.html("Start");
-    start.on("click", function(){
-        $(".question").fadeIn("slow");
+    //Выравнивание высоты блоков item->title
+    var  title = $(".item .title");
+
+    function resizeHeight() {
+        var height = 0;
+        title.removeAttr("style");
+
+        title.each(function () {
+            if ($(this).height() > height) height = $(this).height();
+        });
+
+        title.height(height);
+    }
+
+    resizeHeight();
+
+    $(window).resize(resizeHeight);
+
+
+
+
+    //Выбор ингредиентов и подсчет цены
+    var products = $(".item li");
+    var base = $(".item li.base");
+    var sauce = $(".item li.sauce");
+
+    function calc() {
+        var price = 0;
+
+        products.each(function () {
+            if($(this).hasClass("active")) {
+                price += parseFloat($(this).attr("data-price"));
+            }
+        });
+
+        $(".price").html((price) ? price + " руб." : "");
+    }
+
+    products.click(function () {
+        if ($(this).hasClass("base")) { //Основа - только одна
+            base.not($(this)).removeClass("active");
+        }
+
+        if ($(this).hasClass("sauce")) { //Соус - только один
+            sauce.not($(this)).removeClass("active");
+        }
+
+        $(this).toggleClass("active");
+        calc();
     });
 
 
-    function rand(max, min) {
-        return Math.round(Math.random() * (max - min) + min);
-    }
-
-    var cardsCount = 6;
-    var cardsArr = [];
-
-    for(var i = 0; i < cardsCount + 2; i++){
-        do {
-            var card = String(rand(1, 4) + "-" + rand(1, 9) + ".png");
-        } while (cardsArr.indexOf(card) !== -1);
-
-        console.log(!(~cardsArr.indexOf(card)));
-        cardsArr[i] = card;
-    }
-
-    for(var j = 0; j < cardsArr.length - 2; j++) {
-        $(".cards").append("<div><img src='img/" +
-            cardsArr[j] +
-         "' alt=''></div>");
-    }
-
-    cardsArr.sort(function () {
-        return Math.random() > 0.5;
-    });
-
-    for(var k = 0; k < cardsArr.length; k++) {
-        $(".variants").append("<div><img src='img/" +
-            cardsArr[k] +
-         "' alt=''></div>");
-    }
-
-    $(".variants div img").on("click", function () {
-        $(this).addClass("check");
-    });
-
-    $(".cards img").addClass("flipIn");
 
 });
