@@ -1,9 +1,14 @@
 $(function () {
 
-    //Выравнивание высоты блоков item->title
-    var  title = $(".item .title");
+    var item = $(".item"); //Блоки продуктов
+    var title = $(".item .title"); //Заголовки блоков продуктов
+    var products = $(".item li"); //Все продукты
+    var base = $(".item li.base"); //Основы
+    var sauce = $(".item li.sauce"); //Соусы
+    var order = $(".order"); //Кнопка заказа
 
-    function resizeHeight() {
+
+    function resizeHeight() { //Выравнивание высоты блоков item->title
         var height = 0;
         title.removeAttr("style");
 
@@ -14,19 +19,8 @@ $(function () {
         title.height(height);
     }
 
-    resizeHeight();
 
-    $(window).resize(resizeHeight);
-
-
-
-
-    //Выбор ингредиентов и подсчет цены
-    var products = $(".item li");
-    var base = $(".item li.base");
-    var sauce = $(".item li.sauce");
-
-    function calc() {
+    function calc() { //Подсчет цены
         var price = 0;
 
         products.each(function () {
@@ -35,10 +29,61 @@ $(function () {
             }
         });
 
-        $(".price").html((price) ? price + " руб." : "");
+        $(".price").html((price) ? "Цена " + price + " руб." : "");
     }
 
-    products.click(function () {
+
+    function description() { //Вывод состава продуктов
+        var str = "<p>Состав:</p>";
+        var show = false;
+
+        item.each(function () {
+            if($(this).find(".active").length) {
+                str += "<p><span>" + $(this).find(".title").html() + ": </span>";
+
+                $(this).find(".active").each(function(){
+                    str +=  $(this).html() + ", ";
+                });
+
+                str = str.slice(0, -2);
+                str += "</p>";
+
+                show = true;
+            }
+        });
+
+        if (!show) str = "<p>Выберите продукты для пиццы</p>";
+
+        $(".description").html(str);
+    }
+
+
+    function parts() {
+        var count = 0;
+
+        item.each(function () {
+            if($(this).find(".active").length) count++;
+        });
+
+        $(".pizza div:lt(" + count + ")").addClass("animate");
+
+        if (count) {
+            $(".pizza div:gt(" + (count - 1) + ")").removeClass("animate");
+        } else {
+            $(".pizza div").removeClass("animate");
+        }
+
+        (count === 4) ? order.fadeIn() : order.fadeOut();
+    }
+
+
+
+
+    resizeHeight();
+
+    $(window).resize(resizeHeight);
+
+    products.click(function () { //Выбор ингредиентов и подсчет цены
         if ($(this).hasClass("base")) { //Основа - только одна
             base.not($(this)).removeClass("active");
         }
@@ -49,6 +94,8 @@ $(function () {
 
         $(this).toggleClass("active");
         calc();
+        description();
+        parts();
     });
 
 
