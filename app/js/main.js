@@ -6,6 +6,7 @@ $(function () {
     var base = $(".item li.base"); //Основы
     var sauce = $(".item li.sauce"); //Соусы
     var order = $(".order"); //Кнопка заказа
+    var price = $(".price"); //Цена
 
 
     function resizeHeight() { //Выравнивание высоты блоков item->title
@@ -21,15 +22,19 @@ $(function () {
 
 
     function calc() { //Подсчет цены
-        var price = 0;
+        var res = 0;
 
         products.each(function () {
             if($(this).hasClass("active")) {
-                price += parseFloat($(this).attr("data-price"));
+                res += parseFloat($(this).attr("data-price"));
             }
         });
 
-        $(".price").html((price) ? "Цена " + price + " руб." : "");
+        if (res) {
+            price.fadeIn().html("Цена " + res + " руб.");
+        } else {
+            price.fadeOut();
+        }
     }
 
 
@@ -73,7 +78,7 @@ $(function () {
             $(".pizza div").removeClass("animate");
         }
 
-        (count === 4) ? order.fadeIn() : order.fadeOut();
+        (count === 4) ? order.addClass("show") : order.removeClass("show");
     }
 
 

@@ -149,6 +149,12 @@ img {
   background: rgba(0, 0, 0, 0.4);
 }
 
+body {
+  background: url("../img/background.jpg") center;
+  -webkit-background-size: cover;
+          background-size: cover;
+}
+
 .wrapper {
   max-width: 1170px;
   margin: 0 auto;
@@ -160,7 +166,7 @@ section {
   min-width: 100%;
   min-height: 100%;
   margin: 20px auto;
-  background-color: #eee;
+  background-color: rgba(255, 255, 255, 0.85);
   -webkit-border-radius: 10px;
           border-radius: 10px;
   padding: 10px;
@@ -234,6 +240,7 @@ section .details .left .price {
   font-weight: bold;
   font-style: italic;
   color: #0060FF;
+  display: none;
 }
 
 section .details .right {
@@ -346,8 +353,12 @@ section .details .right .pizza div:nth-child(4).animate {
 
 section .details .right .order {
   text-align: center;
-  display: none;
+  visibility: hidden;
   margin-top: auto;
+}
+
+section .details .right .order.show {
+  visibility: visible;
 }
 
 section .details .right .order button {
@@ -453,6 +464,12 @@ section .ingredients .item ul li.active {
   }
 
   section .details .right .order {
+    display: none;
+    margin: auto;
+  }
+
+  section .details .right .order.show {
+    display: block;
     margin: auto;
   }
 }

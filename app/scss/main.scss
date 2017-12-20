@@ -7,6 +7,11 @@
   @include debug(rgba(0, 0, 0, 0.4), 0);
 }
 
+body {
+  background: url("../img/background.jpg") center;
+  background-size: cover;
+}
+
 .wrapper {
   @include wrapper;
 }
@@ -15,7 +20,7 @@ section {
   min-width: 100%;
   min-height: 100%;
   margin: 20px auto;
-  background-color: #eee;
+  background-color: rgba(255,255,255,.85);
   border-radius: 10px;
   padding: 10px;
   display: flex;
@@ -74,6 +79,7 @@ section {
         font-weight: bold;
         font-style: italic;
         color: #0060FF;
+        display: none;
 
         @include md-block {
           flex-basis: 50%;
@@ -96,7 +102,6 @@ section {
         flex-direction: column;
       }
 
-
       .pizza {
         border: 1px solid #aaa;
         box-sizing: border-box;
@@ -114,7 +119,7 @@ section {
           box-sizing: border-box;
           width: 50%;
           height: 50%;
-          background-color: rgba(255,255,255,.8);
+          background-color: rgba(255, 255, 255, .8);
           //transform: skewY(0deg);
           transition: all .5s linear;
 
@@ -158,11 +163,21 @@ section {
 
       .order {
         text-align: center;
-        display: none;
+        visibility: hidden;
         margin-top: auto;
 
         @include md-block {
+          display: none;
           margin: auto;
+        }
+
+        &.show {
+          visibility: visible;
+
+          @include md-block {
+            display: block;
+            margin: auto;
+          }
         }
 
         button {
