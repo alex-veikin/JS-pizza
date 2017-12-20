@@ -277,11 +277,9 @@ section .details .right .pizza {
 }
 
 section .details .right .pizza div {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   width: 50%;
   height: 50%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.85);
   -webkit-transition: all .5s linear;
   -o-transition: all .5s linear;
   transition: all .5s linear;
@@ -410,9 +408,32 @@ section .ingredients .item ul li {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+section .ingredients .item ul li p {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 0;
+}
+
+section .ingredients .item ul li i {
+  color: #c92628;
+  margin: 3px 5px 0 auto;
+  cursor: pointer;
 }
 
 section .ingredients .item ul li.active {
+  cursor: default;
   background-color: #72ff80;
 }
 

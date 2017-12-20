@@ -47,7 +47,7 @@ $(function () {
                 str += "<p><span>" + $(this).find(".title").html() + ": </span>";
 
                 $(this).find(".active").each(function(){
-                    str +=  $(this).html() + ", ";
+                    str +=  $(this).find("p").html() + ", ";
                 });
 
                 str = str.slice(0, -2);
@@ -83,26 +83,33 @@ $(function () {
 
 
 
-
     resizeHeight();
-
     $(window).resize(resizeHeight);
 
-    products.click(function () { //Выбор ингредиентов и подсчет цены
+
+    products.click(function (e) { //Выбор ингредиентов и подсчет цены
         if ($(this).hasClass("base")) { //Основа - только одна
-            base.not($(this)).removeClass("active");
+            base.not($(this)).removeClass("active").find("i").remove();
         }
 
         if ($(this).hasClass("sauce")) { //Соус - только один
-            sauce.not($(this)).removeClass("active");
+            sauce.not($(this)).removeClass("active").find("i").remove();
         }
 
-        $(this).toggleClass("active");
+        // $(this).toggleClass("active"); //Первый вариант
+
+        if (e.target.tagName === "I") { //Второй вариант
+            $(this).removeClass("active").find("i").remove();
+        } else {
+            if (!$(this).find("i").length) {
+                $(this).addClass("active")
+                    .append("<i class=\"fa fa-times\" aria-hidden=\"true\"></i>");
+            }
+        }
+
         calc();
         description();
         parts();
     });
-
-
 
 });

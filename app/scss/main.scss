@@ -115,12 +115,9 @@ section {
         background: url("../img/pizza.jpg") center;
 
         div {
-          //border: 1px solid #aaa;
-          box-sizing: border-box;
           width: 50%;
           height: 50%;
-          background-color: rgba(255, 255, 255, .8);
-          //transform: skewY(0deg);
+          background-color: rgba(255, 255, 255, .85);
           transition: all .5s linear;
 
           &:nth-child(1) {
@@ -230,8 +227,22 @@ section {
           font-size: 14px;
           cursor: pointer;
           transition: .3s all ease;
+          display: flex;
+          justify-content: center;
+
+          p {
+            flex-grow: 1;
+            margin: 0;
+          }
+
+          i {
+            color: #c92628;
+            margin: 3px 5px 0 auto;
+            cursor: pointer;
+          }
 
           &.active {
+            cursor: default;
             background-color: #72ff80;
           }
         }
