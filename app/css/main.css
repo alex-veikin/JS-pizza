@@ -370,6 +370,7 @@ section .details .right .order button {
   color: white;
   cursor: pointer;
   margin-top: 20px;
+  outline: none;
 }
 
 section .ingredients {
