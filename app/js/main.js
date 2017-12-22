@@ -96,9 +96,9 @@ $(function () {
             sauce.not($(this)).removeClass("active").find("i").remove();
         }
 
-        if (e.target.tagName === "I") { //Второй вариант
+        if (e.target.tagName === "I") { //Если клик по <i>
             $(this).removeClass("active").find("i").remove();
-        } else {
+        } else {                        //Иначе добавляем .active и <i>
             if (!$(this).find("i").length) {
                 $(this).addClass("active")
                     .append("<i class=\"fa fa-times\" aria-hidden=\"true\"></i>");
